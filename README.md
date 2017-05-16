@@ -1,0 +1,2 @@
+# SSG
+simple svg generator
