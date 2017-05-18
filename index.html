@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" hrerf="data:;base64,=" />
+<title>测试</title>
+<style>
+*{margin:0;padding:0;-webkit-user-select:none;font-family:consolas;box-sizing: border-box;}
+html,body{height: 100%;}
+body{font-size: 0;color: #333;}
+button{border: 0 none;background-color: transparent;}
+#ctrl-panel{position: fixed;top: 0;right: 0;height: inherit;width: 200px;background-color: orange;}
+.add-a-shape{position: absolute;bottom: 0;right: 0;width: 100%;line-height: 30px;background-color: #fff;}
+</style>
+</head>
+<body>
+	<svg id="worktable" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+		<!-- <rect stroke-width="10" stroke="orange" x="10" y="10" width="50" height="50" fill="none"></rect> -->
+	</svg>
+	<div id="assist">
+		<svg width="100%" height="100%" class="assist-inner">
+
+		</svg>
+	</div>
+	<div id="ctrl-panel">
+		<button class="add-a-shape">添加新图形</button>
+	</div>
+</body>
+</html>
+<script>
+(function (){
+	var worktable = document.querySelector("#worktable"),
+		assist = document.querySelector("#assist"),
+		assistInner = assist.querySelector(".assist-inner"),
+		ctrlPanel = document.querySelector("#ctrl-panel");
+}());
+</script>
