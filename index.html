@@ -9,24 +9,53 @@
 <style>
 *{margin:0;padding:0;-webkit-user-select:none;font-family:consolas;box-sizing: border-box;}
 html,body{height: 100%;}
-body{font-size: 0;color: #333;}
+body{color: #333;}
+body{--tool-box-width: 54px;--tool-box-border-width: 1px;--ctrl-panel-width: 200px;}
+ul{list-style-type: none;}
 button{border: 0 none;background-color: transparent;}
+#tool-box{position: fixed;top: 0;left: 0;width: var(--tool-box-width);height: inherit;border-right: 1px solid orange;}
+#tool-box .tool-list{}
+#tool-box .tool-list li{height: 54px;}
+#tool-box li img{max-width: 100%;}
+#playground{max-width: calc(100% - var(--tool-box-width) - var(--ctrl-panel-width));margin-left: var(--tool-box-width);overflow: auto;}
 #ctrl-panel{position: fixed;top: 0;right: 0;height: inherit;width: 200px;background-color: orange;}
-.add-a-shape{position: absolute;bottom: 0;right: 0;width: 100%;line-height: 30px;background-color: #fff;}
+
 </style>
 </head>
 <body>
-	<svg id="worktable" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-		<!-- <rect stroke-width="10" stroke="orange" x="10" y="10" width="50" height="50" fill="none"></rect> -->
-	</svg>
-	<div id="assist">
-		<svg width="100%" height="100%" class="assist-inner">
+	<div id="tool-box">
+		<ul class="tool-list">
+			<li>
+				<img src="images/rect-icon.svg" alt="">
+			</li>
+			<li>
 
+			</li>
+			<li>
+
+			</li>
+			<li>
+
+			</li>
+			<li>
+
+			</li>
+		</ul>
+	</div>
+	<div id="playground">
+		<svg class="worktable" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+		<!-- <rect stroke-width="10" stroke="orange" x="10" y="10" width="50" height="50" fill="none"></rect> -->
 		</svg>
+		<div id="assist">
+			<svg width="100%" height="100%" class="assist-inner">
+
+			</svg>
+		</div>
 	</div>
 	<div id="ctrl-panel">
-		<button class="add-a-shape">添加新图形</button>
+
 	</div>
+
 </body>
 </html>
 <script>

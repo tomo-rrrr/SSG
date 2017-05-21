@@ -8,15 +8,46 @@
 <title>测试</title>
 <style>
 *{margin:0;padding:0;-webkit-user-select:none;font-family:consolas;box-sizing: border-box;}
-
+.target{width: 200px;height: 200px;border: 1px solid orange;position: absolute;top: 0;left: 0;}
+.corner{position: absolute;bottom: -10px;right: -10px;width: 20px;height: 20px;background-color: orange;}
+button{position: fixed;top: 0;right: 0;padding: 20px;transition: all .3s;}
+.wocao{color: red;border-color: red;}
 </style>
 </head>
 <body>
-
+	<button>pa</button>
+	<div class="target">
+		<div class="corner"></div>
+	</div>
 </body>
 </html>
 <script>
 window.onload = function () {
+	var corner = document.querySelector(".corner"),
+		target = document.querySelector(".target"),
+		btn = document.querySelector("button");
 
+		btn.onclick = function () {
+			this.classList.toggle("wocao")
+		}
+
+
+		corner.onmousedown = function () {
+			var isThat = btn.classList.contains("wocao");
+			//console.log(isThat);
+			document.onmousemove = function (ev) {
+				if(isThat) {
+					target.style.width = target.style.height = ev.clientY + "px";
+
+				}else {
+					target.style.width = ev.clientX + "px";
+					target.style.height = ev.clientY + "px";
+				}
+			}
+			document.onmouseup = function () {
+				document.onmousemove = null;
+				document.onmouseup = null;
+			}
+		}
 }
 </script>
