@@ -19,7 +19,7 @@ button{border: 0 none;background-color: transparent;}
 #tool-box li img{max-width: 100%;}
 #playground{max-width: calc(100% - var(--tool-box-width) - var(--ctrl-panel-width));margin-left: var(--tool-box-width);overflow: auto;}
 #ctrl-panel{position: fixed;top: 0;right: 0;height: inherit;width: 200px;background-color: orange;}
-
+.bvc{background-color: violet;}
 </style>
 </head>
 <body>
@@ -46,6 +46,9 @@ button{border: 0 none;background-color: transparent;}
 		<svg id="worktable" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
 		<!-- <rect stroke-width="10" stroke="orange" x="10" y="10" width="50" height="50" fill="none"></rect> -->
 		<circle cx="100" cy="100" r="10" fill="orange" class="woca"></circle>
+			<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" class="bvc">
+				<rect width="50" height="50" x="10" y="10" fill="orange"></rect>
+			</svg>
 		</svg>
 		<div id="assist">
 			<svg width="100%" height="100%" class="assist-inner">
@@ -54,7 +57,7 @@ button{border: 0 none;background-color: transparent;}
 		</div>
 	</div>
 	<div id="ctrl-panel">
-		<input type="text" />
+		<input type="text" data-prop="r" />
 	</div>
 
 </body>
@@ -70,7 +73,7 @@ button{border: 0 none;background-color: transparent;}
 		input = document.querySelector("#ctrl-panel input"),
 		woca = document.querySelector(".woca");
 
-		input.oninput = function() {
+		input.oninput = function(ev) {
 			woca.setAttribute("r",this.value);
 		}
 
@@ -102,6 +105,9 @@ button{border: 0 none;background-color: transparent;}
 </script>
 <!--
 
+	借鉴网站
+	http://editor.method.ac
+
 	完整操作流程
 
 	howdy,amigo,新建画布尺寸,关于
@@ -111,21 +117,24 @@ button{border: 0 none;background-color: transparent;}
 		图层栏
 			在每个图形对应图层栏指示上hover过则工作台相应的图形高亮
 			划过显示编辑按钮,点击按钮则编辑
-			按ctrl多选,出现删除,全选功能
+			按ctrl多选,出现删除,合并,全选功能
+				合并: 顺序不连续的图形合并
+				多层图形在多层级挪动位置
 		about,Q&A
 		各种参数配置的公共弹窗?
+		查看源码功能
+		编辑移动图形时的微微小弹窗
 
 		数值输入框
 		拾色器
 
-
-
-
-		新建图形: 2选1,默认样式为内置
-			1.点击具体功能聚焦,直接生成可见元素,并出现缩放控框.
-				..不可取,新建路径时就煞笔了
-			2.同,鼠标变十字,画多大就是多大,done.(需要再次编辑则需要去图层面板激活)
+		新建图形: 2选1,默认样式为黑色
+			鼠标变十字,画多大就是多大,done.(需要再次编辑则需要去图层面板激活)
 				..所见即所得    √ 耶!
+
+		svg里可以嵌套svg   √    耶!
+		子层svg由子集的元素撑开
+		分组元素有救了			耶!
 
 
 -->
