@@ -10,29 +10,30 @@
 *{margin:0;padding:0;-webkit-user-select:none;font-family:consolas;box-sizing: border-box;}
 html,body{height: 100%;}
 body{color: #333;}
-body{--tool-box-width: 54px;--tool-box-border-width: 1px;--ctrl-panel-width: 200px;}
+body{--tool-box-length: 48px;--tool-box-border-width: 1px;--ctrl-panel-width: 200px;}
 ul{list-style-type: none;}
 button{border: 0 none;background-color: transparent;}
-#tool-box{position: fixed;top: 0;left: 0;width: var(--tool-box-width);height: inherit;border-right: 1px solid orange;}
-#tool-box .tool-list{}
-#tool-box .tool-list li{height: 54px;}
-#tool-box li img{max-width: 100%;}
-#playground{max-width: calc(100% - var(--tool-box-width) - var(--ctrl-panel-width));margin-left: var(--tool-box-width);overflow: auto;}
-#ctrl-panel{position: fixed;top: 0;right: 0;height: inherit;width: 200px;background-color: orange;}
+#tool-box{position: fixed;top: 0;left: 0;width: var(--tool-box-length);height: inherit;border-right: 1px solid orange;}
+#tool-box .tool-list li{height: var(--tool-box-length);}
+#tool-box .tool-list button{display: block;width: 100%;height: inherit;background-repeat: no-repeat;background-size: 100%;}
+.tool-list .rect{background-image: url("images/rect-icon.svg");}
+.tool-list .circle{background-image: url("images/circle-icon.svg");}
+#playground{max-width: calc(100% - var(--tool-box-length) - var(--ctrl-panel-width));margin-left: var(--tool-box-length);overflow: auto;}
+#ctrl-panel{position: fixed;top: 0;right: 0;height: inherit;width: 200px;background-color: rgba(0,0,0,.4);}
 .bvc{background-color: violet;}
 </style>
 </head>
 <body>
 	<div id="tool-box">
 		<ul class="tool-list">
-			<li title="新建矩形">
-				<img src="images/rect-icon.svg" alt="">
-			</li>
-			<li title="新建圆形">
-				<img src="images/circle-icon.svg" alt="">
+			<li>
+				<button class="rect" title="新建矩形"></button>
 			</li>
 			<li>
-
+				<button class="circle" title="新建圆形"></button>
+			</li>
+			<li>
+				
 			</li>
 			<li>
 
@@ -47,7 +48,7 @@ button{border: 0 none;background-color: transparent;}
 		<!-- <rect stroke-width="10" stroke="orange" x="10" y="10" width="50" height="50" fill="none"></rect> -->
 		<circle cx="100" cy="100" r="10" fill="orange" class="woca"></circle>
 			<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" class="bvc">
-				<rect width="50" height="50" x="10" y="10" fill="orange"></rect>
+				<rect width="50" height="50" x="10" y="10"></rect>
 			</svg>
 		</svg>
 		<div id="assist">
@@ -77,12 +78,13 @@ button{border: 0 none;background-color: transparent;}
 			woca.setAttribute("r",this.value);
 		}
 
-		//系统默认样式配置对象(N多样式实例)
+		//系统默认样式配置对象(N多内置样式实例)
 			//class链接方式,添加class: .red{fill:red;}
-		//用户配置样式对象(只有1个)
+		//用户配置样式对象(只有1个)或者变成数组形式的自定义,max10个
+		//默认填充用户默认配置
 		/*
 			defaultStyleConfig = {
-				fill: "orange"
+				fill: "orange",
 			}
 		*/
 
@@ -96,10 +98,6 @@ button{border: 0 none;background-color: transparent;}
 		someoneNew.setAttribute("fill","rgba(0,0,0,.3)");
 
 		worktable.appendChild(someoneNew)*/
-
-
-
-
 
 }());
 </script>
@@ -119,16 +117,20 @@ button{border: 0 none;background-color: transparent;}
 			划过显示编辑按钮,点击按钮则编辑
 			按ctrl多选,出现删除,合并,全选功能
 				合并: 顺序不连续的图形合并
-				多层图形在多层级挪动位置
+				多层图形
+					在多层级挪动位置
+					合并图层撤销为原始
+					选中多个并不合并编辑样式, 合并后编辑组的样式吧!
 		about,Q&A
 		各种参数配置的公共弹窗?
 		查看源码功能
 		编辑移动图形时的微微小弹窗
 
-		数值输入框
+		数值输入框/百分比宽高(em,pc,pt,cm,mm)
 		拾色器
+		
 
-		新建图形: 2选1,默认样式为黑色
+		新建图形: 默认样式为黑色
 			鼠标变十字,画多大就是多大,done.(需要再次编辑则需要去图层面板激活)
 				..所见即所得    √ 耶!
 
