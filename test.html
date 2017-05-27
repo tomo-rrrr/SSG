@@ -8,31 +8,63 @@
 <title>测试</title>
 <style>
 *{margin:0;padding:0;-webkit-user-select:none;font-family:consolas;box-sizing: border-box;}
-.target{width: 200px;height: 200px;border: 1px solid orange;position: absolute;top: 0;left: 0;}
-.corner{position: absolute;bottom: -10px;right: -10px;width: 20px;height: 20px;background-color: orange;}
-button{position: fixed;top: 0;right: 0;padding: 20px;transition: all .3s;}
-.wocao{color: red;border-color: red;}
+html,body{height: 100%;}
+svg{cursor: crosshair;}
 </style>
 </head>
 <body>
-	<button>pa</button>
-	<div class="target">
-		<div class="corner"></div>
-	</div>
+	<svg class="contain" width="100%" height="100%"></svg>
 </body>
 </html>
 <script>
 window.onload = function () {
-	var corner = document.querySelector(".corner"),
-		target = document.querySelector(".target"),
-		btn = document.querySelector("button");
+	var contain = document.querySelector(".contain");
 
-		btn.onclick = function () {
-			this.classList.toggle("wocao")
+		contain.onmousedown = function (ev) {
+			var rect = document.createElementNS("http://www.w3.org/2000/svg","rect");
+				contain.appendChild(rect);
+				var startX = ev.clientX,
+					startY = ev.clientY,
+					endX, endY;
+				rect.setAttribute("x",startX);
+				rect.setAttribute("y",startY);
+				rect.setAttribute("rx",6);
+
+
+			document.onmousemove = function (ev) {
+				endX = ev.clientX;
+				endY = ev.clientY;
+				if(endX > startX) {
+					rect.setAttribute("width",endX - startX);
+				}
+				if(endY > startY) {
+					rect.setAttribute("height",endY - startY);
+				}
+
+				if(endX < startX) {
+					rect.setAttribute("x", endX);
+					rect.setAttribute("width", startX - endX);
+				}
+				if(endY < startY) {
+					rect.setAttribute("y", endY);
+					rect.setAttribute("height", startY - endY);	
+				}
+			}
+			document.onmouseup = function () {
+				console.log(startX,startY,endX,endY);
+				if(!endX || !endY || (endY - startY == 0) || (endX - startX == 0)) {
+					contain.removeChild(rect);
+				}
+				document.onmousemove = null;
+				document.onmouseup = null;
+			}
 		}
+}
+</script>
+<!--
 
 
-		corner.onmousedown = function () {
+corner.onmousedown = function () {
 			var isThat = btn.classList.contains("wocao");
 			//console.log(isThat);
 			document.onmousemove = function (ev) {
@@ -49,5 +81,8 @@ window.onload = function () {
 				document.onmouseup = null;
 			}
 		}
-}
-</script>
+
+
+
+
+-->

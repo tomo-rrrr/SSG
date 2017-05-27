@@ -18,6 +18,7 @@ button{border: 0 none;background-color: transparent;outline: 0 none;}
 #tool-box .tool-list button{display: block;width: 100%;height: inherit;background-repeat: no-repeat;background-size: 100%;}
 .tool-list .rect{background-image: url("images/rect-icon.svg");}
 .tool-list .circle{background-image: url("images/circle-icon.svg");}
+.tool-list .text{background-image: url("images/text-icon.svg");}
 #playground{max-width: calc(100% - var(--tool-box-length) - var(--ctrl-panel-width));margin-left: var(--tool-box-length);overflow: auto;}
 #ctrl-panel{position: fixed;top: 0;right: 0;height: inherit;width: 200px;background-color: rgba(0,0,0,.4);}
 </style>
@@ -26,19 +27,19 @@ button{border: 0 none;background-color: transparent;outline: 0 none;}
 	<div id="tool-box">
 		<ul class="tool-list">
 			<li>
-				<button class="rect" title="新建矩形"></button>
+				<button class="rect" title="矩形"></button>
 			</li>
 			<li>
-				<button class="circle" title="新建圆形"></button>
+				<button class="circle" title="圆形"></button>
 			</li>
 			<li>
-				
+				<button class="text" title="段落"></button>
 			</li>
 			<li>
-
+				<button class="line" title="折线"></button>
 			</li>
 			<li>
-
+				<button class="path" title="路径"></button>
 			</li>
 		</ul>
 	</div>
@@ -122,7 +123,6 @@ button{border: 0 none;background-color: transparent;outline: 0 none;}
 				批量修改,赋值
 		about,Q&A
 		各种参数配置的公共弹窗?
-		查看源码功能
 		编辑移动图形时的微微小弹窗
 
 		数值输入框/百分比宽高(em,pc,pt,cm,mm)
