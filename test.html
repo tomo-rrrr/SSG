@@ -36,19 +36,17 @@ window.onload = function () {
 				endY = ev.clientY;
 				if(endX > startX) {
 					rect.setAttribute("width",endX - startX);
-				}
-				if(endY > startY) {
-					rect.setAttribute("height",endY - startY);
-				}
-
-				if(endX < startX) {
+				}else {
 					rect.setAttribute("x", endX);
 					rect.setAttribute("width", startX - endX);
-				}
-				if(endY < startY) {
+				};
+				
+				if(endY > startY) {
+					rect.setAttribute("height",endY - startY);
+				}else {
 					rect.setAttribute("y", endY);
 					rect.setAttribute("height", startY - endY);	
-				}
+				};
 			}
 			document.onmouseup = function () {
 				console.log(startX,startY,endX,endY);
