@@ -10,6 +10,7 @@
 *{margin:0;padding:0;-webkit-user-select:none;font-family:consolas;box-sizing: border-box;}
 html,body{height: 100%;}
 svg{cursor: crosshair;}
+rect{stroke-width: 3px;stroke: #000;rx: 4;fill: none;}
 </style>
 </head>
 <body>
@@ -28,7 +29,7 @@ window.onload = function () {
 					endX, endY;
 				rect.setAttribute("x",startX);
 				rect.setAttribute("y",startY);
-				rect.setAttribute("rx",6);
+
 
 
 			document.onmousemove = function (ev) {
@@ -40,7 +41,7 @@ window.onload = function () {
 					rect.setAttribute("x", endX);
 					rect.setAttribute("width", startX - endX);
 				};
-				
+
 				if(endY > startY) {
 					rect.setAttribute("height",endY - startY);
 				}else {

@@ -58,7 +58,7 @@ button{border: 0 none;background-color: transparent;outline: 0 none;}
 		</div>
 	</div>
 	<div id="ctrl-panel">
-		<input type="text" data-prop="r" />
+		<input type="text" data-accept-val="num" data-prop="r" />
 	</div>
 </body>
 </html>
@@ -70,7 +70,7 @@ button{border: 0 none;background-color: transparent;outline: 0 none;}
 		assist = document.querySelector("#assist"),
 		assistInner = assist.querySelector(".assist-inner"),
 		ctrlPanel = document.querySelector("#ctrl-panel"),
-		input = document.querySelector("#ctrl-panel input"),
+		input = document.querySelector("#ctrl-panel [data-accept-val='num']"),
 		woca = document.querySelector(".woca");
 
 		input.oninput = function(ev) {
@@ -110,25 +110,63 @@ button{border: 0 none;background-color: transparent;outline: 0 none;}
 	howdy,amigo,新建画布尺寸,关于
 	新建完毕
 		工具栏
+			当前使用工具指示器, 区分椭圆和正圆, 长方形和正方形
+			将圆角矩形转换为同等路径的path?
+
 		工作台
+			隐藏的svg
+				下载到本地时的所有节点全保存在隐藏svg里
+			可见的svg只放层级复杂的辅助等svg
+
 		图层栏
 			在每个图形对应图层栏指示上hover过则工作台相应的图形高亮
 			划过显示编辑按钮,点击按钮则编辑
 			按ctrl多选,出现删除,合并,全选功能
-				合并: 顺序不连续的图形合并
+				合并: 顺序不连续的图形合并, 位置是首次点击的图形的位置
 				多层图形
 					在多层级挪动位置
 					合并图层撤销为原始
+						多层嵌套的话只拆最外面一层
 					选中多个并不合并编辑样式, 合并后编辑组的样式吧!
 				批量修改,赋值
 		about,Q&A
 		各种参数配置的公共弹窗?
 		编辑移动图形时的微微小弹窗
 
+		快捷键
+			shift切换正方毫无疑问
+			delete删除选中元素
+			↑←↓→调节选中元素位置,+shift移动10个单位,+ctrl移动100个单位,同时有则算做100个单位
+			字母上方键盘1-0对应客户自定义的样式(userAgent)
+				选了他妈哪个新建图形就他妈的用哪个
+				再按别的数字键切换去
+
+
+		不慎移入屏幕外的图形可用编辑窗口救回来, 不用屌它
+		手动移动到画布外的所有图形不屌它
 		数值输入框/百分比宽高(em,pc,pt,cm,mm)
 		拾色器
+		清洁工作使用worker ?
+			worker端.filter过滤掉无效节点
+		固定pattern, 不随元素移动而移动?
+		动画元素?
+		为了动画, 工具栏的图表inline?
+			图表的样式跟随当前用户选中的userAgent?
+		鼠标划过图层,工作台对应图形高亮,点一下,可编辑模式
+		滤镜
+			兼容性检测
+		标识所有数字输入框, 按标识querySele来绑定事件
+		缩放画布
+		变换
+			旋转 卧槽!!!
+				在编辑窗口加旋转吧
+			缩放
+			扭曲
+		文字系列
+			适当看着给, 差不多行了
+		裁剪路径/遮罩系列
 
-		
+
 
 		新建图形: 默认样式为黑色
 			鼠标变十字,画多大就是多大,done.(需要再次编辑则需要去图层面板激活)
