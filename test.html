@@ -10,11 +10,15 @@
 *{margin:0;padding:0;-webkit-user-select:none;font-family:consolas;box-sizing: border-box;}
 html,body{height: 100%;}
 svg{cursor: crosshair;}
-rect{stroke-width: 3px;stroke: #000;rx: 4;fill: none;}
+.layer-list{position: fixed;top: 0;right: 0;width: 200px;height: inherit;overflow: auto;}
+.layer-list li{line-height: 30px;text-indent: 5px;}
 </style>
 </head>
 <body>
 	<svg class="contain" width="100%" height="100%"></svg>
+	<ul class="layer-list">
+
+	</ul>
 </body>
 </html>
 <script>
@@ -29,6 +33,7 @@ window.onload = function () {
 					endX, endY;
 				rect.setAttribute("x",startX);
 				rect.setAttribute("y",startY);
+				rect.setAttribute("rx",5);
 
 
 
@@ -46,11 +51,10 @@ window.onload = function () {
 					rect.setAttribute("height",endY - startY);
 				}else {
 					rect.setAttribute("y", endY);
-					rect.setAttribute("height", startY - endY);	
+					rect.setAttribute("height", startY - endY);
 				};
 			}
 			document.onmouseup = function () {
-				console.log(startX,startY,endX,endY);
 				if(!endX || !endY || (endY - startY == 0) || (endX - startX == 0)) {
 					contain.removeChild(rect);
 				}

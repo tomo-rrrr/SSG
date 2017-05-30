@@ -21,6 +21,9 @@ button{border: 0 none;background-color: transparent;outline: 0 none;}
 .tool-list .text{background-image: url("images/text-icon.svg");}
 #playground{max-width: calc(100% - var(--tool-box-length) - var(--ctrl-panel-width));margin-left: var(--tool-box-length);overflow: auto;}
 #ctrl-panel{position: fixed;top: 0;right: 0;height: inherit;width: 200px;background-color: rgba(0,0,0,.4);}
+#ctrl-panel .layer-list{height: 50%;overflow: auto;}
+#ctrl-panel .layer-list li{line-height: 30px;text-indent: 10px;}
+#ctrl-panel .layer-list li:hover{background-color: orange;color: #fff;}
 </style>
 </head>
 <body>
@@ -33,7 +36,7 @@ button{border: 0 none;background-color: transparent;outline: 0 none;}
 				<button class="circle" title="圆形"></button>
 			</li>
 			<li>
-				<button class="text" title="段落"></button>
+				<button class="text" title="文字"></button>
 			</li>
 			<li>
 				<button class="line" title="折线"></button>
@@ -46,7 +49,7 @@ button{border: 0 none;background-color: transparent;outline: 0 none;}
 	<div id="playground">
 		<svg id="worktable" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
 		<!-- <rect stroke-width="10" stroke="orange" x="10" y="10" width="50" height="50" fill="none"></rect> -->
-		<circle cx="100" cy="100" r="10" fill="orange" class="woca"></circle>
+		<circle cx="100" cy="100" r="10" fill="orange"></circle>
 			<svg xmlns="http://www.w3.org/2000/svg">
 				<rect width="50" height="50" x="10" y="10"></rect>
 			</svg>
@@ -58,7 +61,10 @@ button{border: 0 none;background-color: transparent;outline: 0 none;}
 		</div>
 	</div>
 	<div id="ctrl-panel">
-		<input type="text" data-accept-val="num" data-prop="r" />
+		<!-- <input type="text" data-accept-val="num" data-prop="r" /> -->
+		<ul class="layer-list">
+
+		</ul>
 	</div>
 </body>
 </html>
@@ -69,13 +75,8 @@ button{border: 0 none;background-color: transparent;outline: 0 none;}
 	var worktable = document.querySelector("#worktable"),
 		assist = document.querySelector("#assist"),
 		assistInner = assist.querySelector(".assist-inner"),
-		ctrlPanel = document.querySelector("#ctrl-panel"),
-		input = document.querySelector("#ctrl-panel [data-accept-val='num']"),
-		woca = document.querySelector(".woca");
+		ctrlPanel = document.querySelector("#ctrl-panel");
 
-		input.oninput = function(ev) {
-			woca.setAttribute("r",this.value);
-		}
 
 		//系统默认样式配置对象(N多内置样式实例)
 			//class链接方式,添加class: .red{fill:red;}
@@ -111,7 +112,10 @@ button{border: 0 none;background-color: transparent;outline: 0 none;}
 	新建完毕
 		工具栏
 			当前使用工具指示器, 区分椭圆和正圆, 长方形和正方形
-			将圆角矩形转换为同等路径的path?
+			将圆角矩形转换为同等路径的path? ×
+			圆在保存时才将椭圆转化为圆,绘制时一律为椭圆
+			一段圆弧工具?
+
 
 		工作台
 			隐藏的svg
@@ -132,6 +136,7 @@ button{border: 0 none;background-color: transparent;outline: 0 none;}
 		about,Q&A
 		各种参数配置的公共弹窗?
 		编辑移动图形时的微微小弹窗
+		丁猪云音乐的播放器锁定条
 
 		快捷键
 			shift
@@ -144,6 +149,8 @@ button{border: 0 none;background-color: transparent;outline: 0 none;}
 			字母上方键盘1-0对应客户自定义的样式(userAgent)
 				选了他妈哪个新建图形就他妈的用哪个
 				再按别的数字键切换去
+			ctrl+c,+v
+				复制当前节点
 
 
 		不慎移入屏幕外的图形可用编辑窗口救回来, 不用屌它
@@ -151,16 +158,20 @@ button{border: 0 none;background-color: transparent;outline: 0 none;}
 		数值输入框/百分比宽高(em,pc,pt,cm,mm)
 		拾色器
 		清洁工作使用worker ?
-			worker端.filter过滤掉无效节点
-		固定pattern, 不随元素移动而移动?
+			worker端.filter过滤掉无效节点 ×不可行,节点无法复制
+		pattern
+			填充时选择不随元素移动而移动?
+			另开一屏用作实时预览纹理编辑
 		动画元素?
 		为了动画, 工具栏的图表inline?
 			图表的样式跟随当前用户选中的userAgent?
 		鼠标划过图层,工作台对应图形高亮,点一下,可编辑模式
+			被大图形遮挡在后面的元素怎么办?
 		滤镜
 			兼容性检测
 		标识所有数字输入框, 按标识querySele来绑定事件
 		缩放画布
+			右下角的缩略图和大于屏幕尺寸的画布同步移动
 		变换
 			旋转 卧槽!!!
 				在编辑窗口加旋转吧
@@ -172,6 +183,7 @@ button{border: 0 none;background-color: transparent;outline: 0 none;}
 		长度单位
 			手册上有
 		渐变
+		每个图形有个独立的编辑窗口,而不是共用一个
 
 
 
